@@ -145,3 +145,37 @@ body {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+@media (max-width: 768px) {
+    /* Đẩy Sidebar ra phía sau hoặc ẩn đi để nhường chỗ cho nội dung */
+    .sidebar {
+        width: 100%;
+        position: relative; /* Không để cố định bên trái nữa */
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0 !important; /* Xóa khoảng trống bên trái */
+        padding: 10px !important;
+        width: 100%;
+    }
+
+    /* Giúp thẻ card co giãn tự nhiên */
+    .card {
+        padding: 15px !important;
+        margin: 10px 0 !important;
+        width: auto !important;
+    }
+
+    /* Sửa lỗi công thức bị tràn */
+    .note-box, .theory-block, .alert-box {
+        overflow-x: auto;
+        white-space: normal; /* Cho phép xuống dòng với văn bản */
+        word-wrap: break-word;
+    }
+
+    /* Các công thức MathJax lớn sẽ tự xuất hiện thanh cuộn ngang */
+    .MathJax {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+}
