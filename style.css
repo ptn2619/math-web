@@ -51,4 +51,189 @@ body {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
-   
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    background: var(--white);
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 15px 25px; /* CẬP NHẬT: Giãn khoảng cách các bài */
+    color: #636e72;
+    text-decoration: none;
+    font-size: 1rem; /* CẬP NHẬT: Chữ bài học lớn hơn */
+    border-bottom: 1px solid #f1f2f6;
+    transition: var(--transition);
+}
+
+.dropdown-content a:hover, 
+.dropdown-content a.active {
+    background: #eef5ff;
+    color: var(--primary);
+    font-weight: 700;
+    border-left: 4px solid var(--primary);
+}
+
+/* --- NỘI DUNG CHÍNH (Giãn cách rộng rãi) --- */
+.main-content {
+    margin-left: 300px;
+    padding: 60px; /* CẬP NHẬT: Tăng padding để nội dung "thở" hơn */
+    width: calc(100% - 300px);
+    box-sizing: border-box;
+    transition: var(--transition);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: slideUp 0.4s ease forwards;
+}
+
+.tab-content h1 {
+    font-size: 2.5rem; /* CẬP NHẬT: Tiêu đề bài học lớn hơn */
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+/* --- COMPONENTS (Giữ nguyên cấu trúc, chỉ nới rộng không gian) --- */
+.card {
+    background: var(--white);
+    padding: 40px; /* CẬP NHẬT: Nới rộng card */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 45px; /* CẬP NHẬT: Giãn cách các khối lớn */
+}
+
+h3 { margin-bottom: 25px; color: var(--primary); font-size: 1.5rem; }
+
+.formula-box {
+    background: #f8f9fa;
+    padding: 30px; /* CẬP NHẬT: Rộng rãi cho công thức */
+    border-radius: 12px;
+    border-left: 6px solid var(--primary);
+    margin: 25px 0;
+    overflow-x: auto;
+}
+
+.note-box {
+    background: #fff5e6;
+    border-left: 5px solid var(--warning);
+    padding: 20px 25px;
+    border-radius: 8px;
+    margin: 25px 0;
+}
+
+.alert-box {
+    background-color: #fff;
+    border: 1px dashed var(--danger);
+    border-left: 5px solid var(--danger);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.alert-icon {
+    color: var(--danger);
+    font-weight: bold;
+    margin-right: 15px;
+    white-space: nowrap;
+}
+.alert-icon::before { content: "⚠️"; margin-right: 8px; }
+
+.formula-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* CẬP NHẬT: Tăng khoảng cách lưới */
+    margin: 25px 0;
+}
+
+.math-list-clean {
+    list-style-type: disc;
+    padding-left: 25px;
+}
+.math-list-clean li { margin-bottom: 18px; } /* CẬP NHẬT: Giãn các dòng công thức */
+
+/* --- NÚT VÍ DỤ (Giữ nguyên tính năng, chỉ thêm giãn dòng lời giải) --- */
+details summary {
+    list-style: none;
+    display: inline-block;
+    padding: 12px 25px;
+    background: #f1f2f6;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: var(--transition);
+    margin-top: 20px;
+}
+
+details summary:hover { background: var(--primary); color: white; }
+details summary::-webkit-details-marker { display: none; }
+
+.example-content {
+    background: #fdfdfd;
+    padding: 20px 25px;
+    border-left: 4px solid var(--success);
+    margin-top: 15px;
+    border-radius: 0 10px 10px 0;
+    animation: fadeIn 0.4s ease;
+    line-height: 2; /* CẬP NHẬT: Giãn dòng cực thoáng cho lời giải */
+}
+
+/* --- RESPONSIVE & MOBILE (Giữ nguyên tính năng trượt Sidebar) --- */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    padding: 12px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle { display: block; }
+
+    .sidebar { width: 260px; left: -260px; }
+    .sidebar.active { left: 0; box-shadow: 5px 0 20px rgba(0,0,0,0.2); }
+
+    .main-content {
+        margin-left: 0 !important;
+        padding: 85px 20px 30px 20px !important;
+        width: 100% !important;
+    }
+
+    .card { padding: 25px 20px !important; }
+    .formula-grid { grid-template-columns: 1fr; }
+    .MathJax { font-size: 0.9rem !important; }
+}
+
+/* --- ANIMATIONS (Giữ nguyên toàn bộ) --- */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
