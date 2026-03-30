@@ -1,211 +1,54 @@
+/* --- BIẾN TOÀN CỤC (Giữ nguyên và bổ sung) --- */
 :root {
     --primary: #0984e3;
     --danger: #d63031;
+    --success: #2ecc71;
+    --warning: #ffa502;
     --bg: #f0f2f5;
     --white: #ffffff;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* --- THIẾT LẬP CHUNG --- */
 body {
     font-family: 'Inter', 'Segoe UI', sans-serif;
     background: var(--bg);
     margin: 0;
     display: flex;
+    line-height: 1.8; /* CẬP NHẬT: Giãn dòng toàn trang */
+    letter-spacing: 0.02em;
 }
 
-/* --- SIDEBAR --- */
+/* --- SIDEBAR (Nâng cấp kích thước chữ và phân cấp) --- */
 .sidebar {
-    width: 280px;
+    width: 300px; /* CẬP NHẬT: Rộng hơn để thoáng chữ */
     height: 100vh;
     background: var(--white);
     border-right: 1px solid #e1e4e8;
     position: fixed;
     z-index: 100;
-    transition: var(--transition); /* Thêm transition để trượt mượt */
+    transition: var(--transition);
+}
+
+.sidebar h2 {
+    font-size: 1.8rem; /* CẬP NHẬT: Chữ tiêu đề lớn hơn */
+    padding: 25px 20px;
+    margin: 0;
+    color: var(--primary);
+    border-bottom: 2px solid #f0f2f5;
+    font-weight: 800;
 }
 
 .menu-btn {
     width: 100%;
-    padding: 18px;
-    background: var(--primary);
-    color: var(--white);
+    padding: 20px;
+    background: #f8f9fa; /* CẬP NHẬT: Màu nền nhẹ cho Chương */
+    color: #2d3436;
     border: none;
-    font-weight: 600;
+    border-left: 5px solid var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem; /* CẬP NHẬT: Chữ Chương lớn hơn */
     cursor: pointer;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-
-.dropdown-content {
-    display: none;
-    background: var(--white);
-}
-
-.dropdown-content.show {
-    display: block;
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 12px 20px;
-    color: #444;
-    text-decoration: none;
-    font-size: 14px;
-    border-bottom: 1px solid #f1f2f6;
-    transition: var(--transition);
-}
-
-.dropdown-content a:hover, 
-.dropdown-content a.active {
-    background: #eef5ff;
-    color: var(--primary);
-    font-weight: 600;
-    border-left: 4px solid var(--primary);
-}
-
-/* --- NỘI DUNG CHÍNH --- */
-.main-content {
-    margin-left: 280px;
-    padding: 40px;
-    width: calc(100% - 280px);
-    box-sizing: border-box;
-    transition: var(--transition);
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-    animation: slideUp 0.4s ease forwards;
-}
-
-/* --- COMPONENTS --- */
-.card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
-}
-
-.formula-box {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 12px;
-    border-left: 6px solid var(--primary);
-    margin: 20px 0;
-    overflow-x: auto;
-}
-
-.note-box {
-    background: #fff5e6;
-    border-left: 5px solid #ffa502;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 15px 0;
-}
-
-.alert-box {
-    background-color: #fff;
-    border: 1px dashed var(--danger);
-    border-left: 5px solid var(--danger);
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.alert-icon {
-    color: var(--danger);
-    font-weight: bold;
-    margin-right: 15px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-}
-
-.alert-icon::before { content: "⚠️"; margin-right: 8px; }
-
-.formula-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.math-list-clean {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-.math-list-clean li { margin-bottom: 10px; }
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- MOBILE TOGGLE (MẶC ĐỊNH ẨN) --- */
-.mobile-menu-toggle {
-    display: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1001;
-    padding: 10px 18px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    font-weight: 600;
-}
-
-/* --- RESPONSIVE CHO ĐIỆN THOẠI --- */
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block; /* Hiện nút trên điện thoại */
-    }
-
-    .sidebar {
-        width: 260px;
-        left: -260px; /* Ẩn menu sang trái */
-    }
-
-    .sidebar.active {
-        left: 0; /* Trượt menu vào */
-        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-    }
-
-    .main-content {
-        margin-left: 0 !important;
-        padding: 70px 15px 20px 15px !important; /* Đẩy nội dung xuống để không bị nút đè */
-        width: 100% !important;
-    }
-
-    .card {
-        padding: 20px !important;
-        margin-bottom: 20px;
-    }
-
-    .formula-grid {
-        grid-template-columns: 1fr; /* Luôn là 1 cột trên điện thoại */
-    }
-
-    .MathJax {
-        font-size: 0.85rem !important; /* Thu nhỏ công thức một chút để vừa màn hình */
-    }
-
-    /* Lớp phủ mờ khi mở menu (Tùy chọn) */
-    .sidebar.active::after {
-        content: "";
-        position: fixed;
-        top: 0; left: 260px; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.3);
-        z-index: -1;
-    }
-}
+   
