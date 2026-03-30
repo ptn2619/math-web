@@ -21,6 +21,7 @@ body {
     border-right: 1px solid #e1e4e8;
     position: fixed;
     z-index: 100;
+    transition: var(--transition); /* Thêm transition để trượt mượt */
 }
 
 .menu-btn {
@@ -69,6 +70,7 @@ body {
     padding: 40px;
     width: calc(100% - 280px);
     box-sizing: border-box;
+    transition: var(--transition);
 }
 
 .tab-content {
@@ -95,7 +97,7 @@ body {
     border-radius: 12px;
     border-left: 6px solid var(--primary);
     margin: 20px 0;
-    overflow-x: auto; /* Chống tràn công thức trên mobile */
+    overflow-x: auto;
 }
 
 .note-box {
@@ -145,37 +147,65 @@ body {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* --- MOBILE TOGGLE (MẶC ĐỊNH ẨN) --- */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    padding: 10px 18px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-weight: 600;
+}
+
+/* --- RESPONSIVE CHO ĐIỆN THOẠI --- */
 @media (max-width: 768px) {
-    /* Đẩy Sidebar ra phía sau hoặc ẩn đi để nhường chỗ cho nội dung */
+    .mobile-menu-toggle {
+        display: block; /* Hiện nút trên điện thoại */
+    }
+
     .sidebar {
-        width: 100%;
-        position: relative; /* Không để cố định bên trái nữa */
-        height: auto;
+        width: 260px;
+        left: -260px; /* Ẩn menu sang trái */
+    }
+
+    .sidebar.active {
+        left: 0; /* Trượt menu vào */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
     }
 
     .main-content {
-        margin-left: 0 !important; /* Xóa khoảng trống bên trái */
-        padding: 10px !important;
-        width: 100%;
+        margin-left: 0 !important;
+        padding: 70px 15px 20px 15px !important; /* Đẩy nội dung xuống để không bị nút đè */
+        width: 100% !important;
     }
 
-    /* Giúp thẻ card co giãn tự nhiên */
     .card {
-        padding: 15px !important;
-        margin: 10px 0 !important;
-        width: auto !important;
+        padding: 20px !important;
+        margin-bottom: 20px;
     }
 
-    /* Sửa lỗi công thức bị tràn */
-    .note-box, .theory-block, .alert-box {
-        overflow-x: auto;
-        white-space: normal; /* Cho phép xuống dòng với văn bản */
-        word-wrap: break-word;
+    .formula-grid {
+        grid-template-columns: 1fr; /* Luôn là 1 cột trên điện thoại */
     }
 
-    /* Các công thức MathJax lớn sẽ tự xuất hiện thanh cuộn ngang */
     .MathJax {
-        overflow-x: auto;
-        overflow-y: hidden;
+        font-size: 0.85rem !important; /* Thu nhỏ công thức một chút để vừa màn hình */
+    }
+
+    /* Lớp phủ mờ khi mở menu (Tùy chọn) */
+    .sidebar.active::after {
+        content: "";
+        position: fixed;
+        top: 0; left: 260px; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.3);
+        z-index: -1;
     }
 }
