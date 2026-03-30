@@ -10,174 +10,45 @@
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 displayMath: [['$$', '$$']]
-            }
+            },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        /* CSS TỐI ƯU HÓA */
+        /* CSS ĐÃ SỬA: ÉP CHỮ CHÚ Ý LÊN DÒNG TRÊN */
         .alert-box {
-            display: block !important;
+            display: block !important; /* Chuyển từ flex sang block để nội dung xuống hàng */
             border-left: 5px solid #e74c3c !important; 
             background-color: #fdf2f2 !important; 
-            padding: 15px 20px !important;
-            margin: 20px 0;
+            padding: 20px !important;
+            margin-top: 20px;
             border-radius: 8px;
         }
+
+        /* Tiêu đề "Chú ý" nằm riêng 1 dòng */
         .alert-icon {
             color: #e74c3c;
             font-weight: bold;
+            display: block !important; /* Ép xuống dòng */
+            margin-bottom: 10px; /* Khoảng cách với nội dung bên dưới */
+        }
+
+        /* Nội dung chú ý sát lề trái, không thụt lề */
+        .alert-content {
             display: block !important;
-            margin-bottom: 8px;
-        }
-        .note-box {
-            background: #fff5e6;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-        .formula-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .math-list-clean {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            line-height: 2;
-        }
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
-        details summary {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 20px;
-            background: #eef6ff;
-            border: 1px solid #007bff;
-            color: #007bff;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        .example-content {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 10px;
-            border-left: 4px solid #007bff;
+            margin-left: 0 !important;
+            line-height: 1.6;
+            color: #333;
         }
     </style>
 </head>
 <body>
-
+<button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
 <div class="sidebar">
     <h2 style="color: #4a90e2; padding-left: 20px;">Toán 11</h2>
     <nav id="main-nav">
         <div class="menu-group">
-            <button class="menu-btn" onclick="toggleDropdown()">Hàm số mũ & Logarit ▼</button>
+            <button class="menu-btn" onclick="toggleDropdown()">Hàm số mũ & Hàm số logarit <span id="arrow" style="transition: 0.3s">▼</span></button>
             <div id="dropdown-container" class="dropdown-content show">
-                <a href="#" class="nav-link active" data-target="sec-1">I. Phép tính lũy thừa</a>
-                <a href="#" class="nav-link" data-target="sec-2">II. Phép tính Logarit</a>
-            </div>
-        </div>
-    </nav>
-</div>
-
-<main class="main-content">
-    <section id="sec-1" class="tab-content active">
-        <h1>Phép Tính Lũy Thừa</h1>
-
-        <div class="card">
-            <h3>1. Lũy thừa với số mũ nguyên</h3>
-            <div class="note-box">
-                Với số nguyên dương $n$, số thực $a \neq 0$: $$a^{-n} = \frac{1}{a^n}$$
-            </div>
-            <div class="alert-box">
-                <span class="alert-icon">⚠️ Chú ý</span>
-                <div class="alert-content">
-                    a) $a^0 = 1$ ($a \neq 0$). <br>
-                    b) $0^0$ và $0^{-n}$ không có nghĩa.
-                </div>
-            </div>
-            <details><summary>🔍 Ví dụ</summary><div class="example-content">$2^{-3} = \frac{1}{8}$ ; $(-3)^{-2} = \frac{1}{9}$</div></details>
-        </div>
-
-        <div class="card">
-            <h3>2. Căn bậc n</h3>
-            <div class="note-box">
-                Nếu $a^n = b$ thì $a$ là một <strong>căn bậc n</strong> của $b$ ($n \geq 2$).
-                <ul style="margin-top:10px; list-style: none;">
-                    <li>• <strong>n chẵn:</strong> $b>0$ có 2 căn đối nhau; $b=0$ có 1 căn là 0; $b<0$ không có căn.</li>
-                    <li>• <strong>n lẻ:</strong> Có duy nhất một căn bậc $n$ của $b$, kí hiệu $\sqrt[n]{b}$.</li>
-                </ul>
-            </div>
-            <div class="alert-box">
-                <span class="alert-icon">⚠️ Chú ý</span>
-                <div class="alert-content">$\sqrt[n]{b}$ có nghĩa khi $b \geq 0$ (n chẵn) và luôn có nghĩa (n lẻ).</div>
-            </div>
-            
-            <h3 style="margin-top:20px;">Tính chất căn bậc n</h3>
-            <div class="note-box">
-                <div class="formula-grid">
-                    <ul class="math-list-clean">
-                        <li>$\sqrt[n]{a} \cdot \sqrt[n]{b} = \sqrt[n]{ab}$</li>
-                        <li>$\sqrt[n]{a^n} = a$ (n lẻ) hoặc $|a|$ (n chẵn)</li>
-                    </ul>
-                    <ul class="math-list-clean">
-                        <li>$\frac{\sqrt[n]{a}}{\sqrt[n]{b}} = \sqrt[n]{\frac{a}{b}}$</li>
-                        <li>$\sqrt[m]{\sqrt[n]{a}} = \sqrt[mn]{a}$</li>
-                    </ul>
-                </div>
-               
-            </div>
-        </div>
-
-        <div class="card">
-            <h3>3. Số mũ hữu tỉ và thực</h3>
-            <div class="note-box">
-                • $a^{\frac{m}{n}} = \sqrt[n]{a^m}$ ($a>0$) <br>
-                • $a^\alpha = \lim_{n \to \infty} a^{r_n}$ với $\alpha = \lim_{n \to \infty} r_n$
-            </div>
-            <div class="alert-box">
-                <span class="alert-icon">⚠️ Chú ý</span>
-                <div class="alert-content">$1^\alpha = 1$ với mọi $\alpha \in \mathbb{R}$.</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="sec-2" class="tab-content">
-        <h1>Phép Tính Logarit</h1>
-
-        <div class="card">
-            <h3>1. Khái niệm logarit</h3>
-            <div class="note-box" style="text-align: center;">
-                $\alpha = \log_a b \Leftrightarrow a^\alpha = b$ ($a>0, a \neq 1, b>0$)
-            </div>
-            <div class="alert-box">
-                <span class="alert-icon">⚠️ Tính chất cơ bản</span>
-                <div class="formula-grid">
-                    <ul class="math-list-clean"><li>$\log_a 1 = 0$</li><li>$\log_a a = 1$</li></ul>
-                    <ul class="math-list-clean"><li>$\log_a a^b = b$</li><li>$a^{\log_a b} = b$</li></ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h3>3. Tính chất của phép tính logarit</h3>
-            <div class="note-box">
-                <ul class="math-list-clean">
-                    <li>• $\log_a (MN) = \log_a M + \log_a N$</li>
-                    <li>• $\log_a \frac{M}{N} = \log_a M - \log_a N$</li>
-                    <li>• $\log_a M^\alpha = \alpha \log_a M$</li>
-                </ul>
-               
-            </div>
-            <div class="alert-box" style="border: 1px dashed #e74c3c !important;">
-                <span class="alert-icon">💡 Đặc biệt</span>
-                <div
+   
