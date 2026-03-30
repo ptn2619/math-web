@@ -1,4 +1,4 @@
-/* --- BIẾN TOÀN CỤC (Giữ nguyên và bổ sung) --- */
+/* --- BIẾN TOÀN CỤC --- */
 :root {
     --primary: #0984e3;
     --danger: #d63031;
@@ -7,6 +7,8 @@
     --bg: #f0f2f5;
     --white: #ffffff;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* CẬP NHẬT: Biến cỡ chữ cơ sở cho máy tính */
+    --base-font-size: 18px; 
 }
 
 /* --- THIẾT LẬP CHUNG --- */
@@ -15,43 +17,52 @@ body {
     background: var(--bg);
     margin: 0;
     display: flex;
-    line-height: 1.8; /* CẬP NHẬT: Giãn dòng toàn trang */
+    font-size: var(--base-font-size); /* CẬP NHẬT: Áp dụng cỡ chữ to */
+    line-height: 1.8; 
     letter-spacing: 0.02em;
+    color: #2d3436;
 }
 
 /* --- SIDEBAR (Nâng cấp kích thước chữ và phân cấp) --- */
 .sidebar {
-    width: 300px; /* CẬP NHẬT: Rộng hơn để thoáng chữ */
+    width: 320px; /* CẬP NHẬT: Rộng hơn một chút để cân đối */
     height: 100vh;
     background: var(--white);
     border-right: 1px solid #e1e4e8;
     position: fixed;
     z-index: 100;
     transition: var(--transition);
+    overflow-y: auto;
 }
 
 .sidebar h2 {
-    font-size: 1.8rem; /* CẬP NHẬT: Chữ tiêu đề lớn hơn */
+    font-size: 1.8rem; 
     padding: 25px 20px;
     margin: 0;
     color: var(--primary);
     border-bottom: 2px solid #f0f2f5;
     font-weight: 800;
+    text-align: center;
 }
 
 .menu-btn {
     width: 100%;
-    padding: 20px;
-    background: #f8f9fa; /* CẬP NHẬT: Màu nền nhẹ cho Chương */
+    padding: 22px 20px; /* CẬP NHẬT: Padding dày hơn */
+    background: #f8f9fa; 
     color: #2d3436;
     border: none;
-    border-left: 5px solid var(--primary);
+    border-left: 6px solid var(--primary);
     font-weight: 700;
-    font-size: 1.1rem; /* CẬP NHẬT: Chữ Chương lớn hơn */
+    font-size: 1.2rem; /* CẬP NHẬT: Chữ Chương rất rõ ràng */
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: 0.2s;
+}
+
+.menu-btn:hover {
+    background: #edf2f7;
 }
 
 .dropdown-content {
@@ -65,10 +76,10 @@ body {
 
 .dropdown-content a {
     display: block;
-    padding: 15px 25px; /* CẬP NHẬT: Giãn khoảng cách các bài */
+    padding: 18px 25px; 
     color: #636e72;
     text-decoration: none;
-    font-size: 1rem; /* CẬP NHẬT: Chữ bài học lớn hơn */
+    font-size: 1.05rem; 
     border-bottom: 1px solid #f1f2f6;
     transition: var(--transition);
 }
@@ -78,14 +89,15 @@ body {
     background: #eef5ff;
     color: var(--primary);
     font-weight: 700;
-    border-left: 4px solid var(--primary);
+    border-left: 5px solid var(--primary);
 }
 
 /* --- NỘI DUNG CHÍNH (Giãn cách rộng rãi) --- */
 .main-content {
-    margin-left: 300px;
-    padding: 60px; /* CẬP NHẬT: Tăng padding để nội dung "thở" hơn */
-    width: calc(100% - 300px);
+    margin-left: 320px;
+    padding: 60px 80px; /* CẬP NHẬT: Tăng padding hai bên cực thoáng */
+    width: calc(100% - 320px);
+    max-width: 1400px; /* CẬP NHẬT: Giới hạn chiều rộng để dễ đọc */
     box-sizing: border-box;
     transition: var(--transition);
 }
@@ -100,140 +112,143 @@ body {
 }
 
 .tab-content h1 {
-    font-size: 2.5rem; /* CẬP NHẬT: Tiêu đề bài học lớn hơn */
-    margin-bottom: 10px;
+    font-size: 2.8rem; /* CẬP NHẬT: Tiêu đề lớn và sang trọng */
+    margin-bottom: 15px;
     font-weight: 800;
+    color: #2d3436;
 }
 
-/* --- COMPONENTS (Giữ nguyên cấu trúc, chỉ nới rộng không gian) --- */
+/* --- COMPONENTS (Giữ nguyên cấu trúc, nới rộng không gian) --- */
 .card {
     background: var(--white);
-    padding: 40px; /* CẬP NHẬT: Nới rộng card */
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin-bottom: 45px; /* CẬP NHẬT: Giãn cách các khối lớn */
+    padding: 45px; 
+    border-radius: 24px; /* CẬP NHẬT: Bo góc hiện đại hơn */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    margin-bottom: 50px; 
 }
 
-h3 { margin-bottom: 25px; color: var(--primary); font-size: 1.5rem; }
+h3 { 
+    margin-bottom: 30px; 
+    color: var(--primary); 
+    font-size: 1.7rem; /* CẬP NHẬT: Tiêu đề mục to hơn */
+    font-weight: 700;
+}
 
 .formula-box {
     background: #f8f9fa;
-    padding: 30px; /* CẬP NHẬT: Rộng rãi cho công thức */
-    border-radius: 12px;
-    border-left: 6px solid var(--primary);
-    margin: 25px 0;
-    overflow-x: auto;
+    padding: 35px; 
+    border-radius: 15px;
+    border-left: 8px solid var(--primary);
+    margin: 30px 0;
+    font-size: 1.2rem; /* CẬP NHẬT: Công thức to hơn */
 }
 
 .note-box {
     background: #fff5e6;
-    border-left: 5px solid var(--warning);
-    padding: 20px 25px;
-    border-radius: 8px;
-    margin: 25px 0;
+    border-left: 6px solid var(--warning);
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin: 30px 0;
+    font-size: 1.1rem;
 }
 
 .alert-box {
     background-color: #fff;
     border: 1px dashed var(--danger);
-    border-left: 5px solid var(--danger);
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 25px;
+    border-left: 6px solid var(--danger);
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 30px;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* CẬP NHẬT: Align lên trên cho đúng UI */
 }
 
 .alert-icon {
     color: var(--danger);
     font-weight: bold;
     margin-right: 15px;
+    font-size: 1.2rem;
     white-space: nowrap;
 }
 .alert-icon::before { content: "⚠️"; margin-right: 8px; }
 
 .formula-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px; /* CẬP NHẬT: Tăng khoảng cách lưới */
-    margin: 25px 0;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px; 
+    margin: 30px 0;
 }
 
 .math-list-clean {
     list-style-type: disc;
-    padding-left: 25px;
+    padding-left: 30px;
 }
-.math-list-clean li { margin-bottom: 18px; } /* CẬP NHẬT: Giãn các dòng công thức */
+.math-list-clean li { 
+    margin-bottom: 22px; /* CẬP NHẬT: Giãn cực thoáng các dòng công thức */
+}
 
-/* --- NÚT VÍ DỤ (Giữ nguyên tính năng, chỉ thêm giãn dòng lời giải) --- */
+/* --- NÚT VÍ DỤ --- */
 details summary {
     list-style: none;
     display: inline-block;
-    padding: 12px 25px;
+    padding: 14px 30px; /* CẬP NHẬT: Nút to dễ bấm */
     background: #f1f2f6;
     color: var(--primary);
     border: 1px solid var(--primary);
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 1rem;
     transition: var(--transition);
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
-details summary:hover { background: var(--primary); color: white; }
-details summary::-webkit-details-marker { display: none; }
+details summary:hover { 
+    background: var(--primary); 
+    color: white; 
+    transform: translateY(-2px);
+}
 
 .example-content {
     background: #fdfdfd;
-    padding: 20px 25px;
-    border-left: 4px solid var(--success);
-    margin-top: 15px;
-    border-radius: 0 10px 10px 0;
-    animation: fadeIn 0.4s ease;
-    line-height: 2; /* CẬP NHẬT: Giãn dòng cực thoáng cho lời giải */
+    padding: 25px 30px;
+    border-left: 5px solid var(--success);
+    margin-top: 20px;
+    border-radius: 0 15px 15px 0;
+    line-height: 2; 
+    font-size: 1.1rem;
 }
 
-/* --- RESPONSIVE & MOBILE (Giữ nguyên tính năng trượt Sidebar) --- */
-.mobile-menu-toggle {
-    display: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1001;
-    padding: 12px 20px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+/* --- MATHJAX ZOOM --- */
+.MathJax {
+    font-size: 1.15em !important; /* CẬP NHẬT: Tự động zoom công thức MathJax lên 15% */
+}
+
+/* --- RESPONSIVE & MOBILE --- */
+@media (max-width: 1024px) {
+    .main-content { padding: 40px; }
 }
 
 @media (max-width: 768px) {
+    :root { --base-font-size: 16px; }
     .mobile-menu-toggle { display: block; }
 
-    .sidebar { width: 260px; left: -260px; }
-    .sidebar.active { left: 0; box-shadow: 5px 0 20px rgba(0,0,0,0.2); }
+    .sidebar { width: 280px; left: -280px; }
+    .sidebar.active { left: 0; box-shadow: 5px 0 25px rgba(0,0,0,0.2); }
 
     .main-content {
         margin-left: 0 !important;
-        padding: 85px 20px 30px 20px !important;
+        padding: 90px 20px 30px 20px !important;
         width: 100% !important;
     }
 
-    .card { padding: 25px 20px !important; }
+    .card { padding: 30px 20px !important; }
     .formula-grid { grid-template-columns: 1fr; }
-    .MathJax { font-size: 0.9rem !important; }
+    .MathJax { font-size: 1rem !important; }
 }
 
-/* --- ANIMATIONS (Giữ nguyên toàn bộ) --- */
+/* --- ANIMATIONS --- */
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
